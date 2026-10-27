@@ -19,8 +19,8 @@
 
 
 typedef struct {
-    uint8_t version;            
-    uint8_t header_length_bytes; 
+    uint8_t version; //always equal to 4           
+    uint8_t header_length_bytes; // number of words (value*4=bytes)
     uint8_t type_of_service;     
     uint16_t total_length;        
     uint16_t id;      
@@ -37,11 +37,11 @@ typedef struct {
 
     bool has_options;         
     uint8_t options_len;         
-} IPv4Header;//size of 20. with options 60 bytes
+} IPv4Header;//size of 20. with options field size 60 bytes
 
 
 typedef struct {
-    uint8_t version;            
+    uint8_t version; //always equal to 6     
     uint8_t traffic_class;     
     uint32_t flow_label;         
     uint16_t payload_len;         
@@ -54,8 +54,8 @@ typedef struct {
 
 
 typedef struct {
-    uint8_t type;               
-    uint8_t code;           
+    uint8_t type;//0 = reply 3 = destanation unreachable 8 = req 11 = time exceeded              
+    uint8_t code; // type explain           
     uint16_t checksum;
     uint16_t id;                 
     uint16_t sequence;         

@@ -43,7 +43,7 @@ static int nicBind2Interface(int sock_fd, int interface_index) {
     netwrok_interface_socket.sll_protocol = htons(ETH_P_ALL);
 
     if (bind(sock_fd, (struct sockaddr *)&netwrok_interface_socket, sizeof(netwrok_interface_socket))
-    <0) {//socket will onlu listen now only to our interface
+    <0) {//socket will only listen now only to our interface
         perror("Failed to bind socket to interface");
         return -1;
     }

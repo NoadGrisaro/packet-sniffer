@@ -103,8 +103,7 @@ static int parseIPv4(const uint8_t *buffer, size_t length, size_t *offset, layer
 
     uint8_t ver_ihl = ip_ptr[0];
     v4->version = (ver_ihl >> 4) & 0x0F;
-    v4->header_length_bytes = ver_ihl & 0x0F;
-    v4->header_length_bytes = v4->header_length_bytes * 4;
+    v4->header_length_bytes = (ver_ihl & 0x0F) * 4;
 
     if (v4->version != 4 || v4->header_length_bytes < IPV4_MIN_HEADER_LEN) {
         fprintf(stderr, "Layer 3 error: invalid IPv4 version (%u) or Internet Header Len (%u)\n", 
@@ -126,7 +125,7 @@ static int parseIPv4(const uint8_t *buffer, size_t length, size_t *offset, layer
 
 static int parseIPv6(const uint8_t *buffer, size_t length, size_t *offset, layer3Data *layer3_data) {
     if (length < *offset + IPV6_HEADER_LEN) {
-        fprintf(stderr, "[-] Layer 3 error: truncated IPv6 header\n");
+        fprintf(stderr, "Layer 3 error: truncated IPv6 header\n");
         return -1;
     }
 
@@ -156,7 +155,7 @@ static int parseIPv6(const uint8_t *buffer, size_t length, size_t *offset, layer
 }
 
 int parseLayer3(const uint8_t *buffer, size_t length, size_t *offset, 
-                 Layer2NextProtocol l2_next_proto, layer3Data *layer3_data) {
+    Layer2NextProtocol l2_next_proto, layer3Data *layer3_data) {
     if (!buffer || !offset || !layer3_data) {
         return -1;
     }

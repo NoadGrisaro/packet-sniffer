@@ -16,14 +16,14 @@ typedef struct {
     uint8_t dst_mac[ETH_ADDRESS_LENGTH];
     uint8_t src_mac[ETH_ADDRESS_LENGTH];
     uint16_t ethertype; //points to the next protocol
-} EthernetHeader;//size of 6+6+2=14 bytes
+} EthernetHeader;//size of 14 bytes
 
 typedef struct {
     uint16_t tpid; // always 0x8100
     uint8_t  priority_code;  //0-lowest 7-highest
     bool drop_eligible_indicator; //if packet will be droped in high trafic
     uint16_t vlan_id;  
-}VlanHeader;//size of 32 bytes
+}VlanHeader;//size of 6 bytes
 
 typedef struct{
     uint16_t hardware_type;               

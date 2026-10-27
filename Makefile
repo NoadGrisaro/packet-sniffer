@@ -4,6 +4,7 @@ CFLAGS = -Wall -Wextra -pthread -Iinclude
 TARGET = bin/packet_sniffer
 SRCS = main.c \
        nic_sniffer.c \
+       ring_buffer.c \
        sniffer_presentation.c \
        layer_2/layer2_parser.c \
        layer_2/layer2_presentation.c \

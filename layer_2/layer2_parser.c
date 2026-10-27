@@ -43,7 +43,7 @@ int handleVlan(const uint8_t *buffer, size_t length, size_t *offset, layer2Data 
 
     *offset += 2;
 
-    // עדכון ה-EtherType לזה שמופיע בתוך ה-VLAN
+    //update the ethertype to point to the next proto
     uint16_t inner_ethertype = ntohs(*(const uint16_t *)(buffer + *offset));
     layer2_data->eth.ethertype = inner_ethertype;
     *offset += 2;

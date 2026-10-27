@@ -40,16 +40,16 @@ static void parseDNS(const uint8_t *payload, size_t len, DNSInfo *dns) {
     }
 
     dns->transaction_id = ntohs(*(uint16_t *)(payload + 0));
-    uint16_t flags      = ntohs(*(uint16_t *)(payload + 2));
+    uint16_t flags = ntohs(*(uint16_t *)(payload + 2));
 
-    dns->is_response           = (flags >> 15) & 0x01;
-    dns->opcode                = (flags >> 11) & 0x0F;
-    dns->authoritative_answer  = (flags >> 10) & 0x01;
-    dns->recursion_desired     = (flags >> 8) & 0x01;
-    dns->recursion_available   = (flags >> 7) & 0x01;
-    dns->response_code         = flags & 0x0F;
+    dns->is_response = (flags >> 15) & 0x01;
+    dns->opcode = (flags >> 11) & 0x0F;
+    dns->authoritative_answer = (flags >> 10) & 0x01;
+    dns->recursion_desired = (flags >> 8) & 0x01;
+    dns->recursion_available = (flags >> 7) & 0x01;
+    dns->response_code = flags & 0x0F;
 
-    dns->questions_count       = ntohs(*(uint16_t *)(payload + 4));
+    dns->questions_count = ntohs(*(uint16_t *)(payload + 4));
     dns->answers_count         = ntohs(*(uint16_t *)(payload + 6));
     dns->authority_count       = ntohs(*(uint16_t *)(payload + 8));
     dns->additional_count      = ntohs(*(uint16_t *)(payload + 10));
@@ -128,7 +128,7 @@ static void parseTextBanner(const uint8_t *payload, size_t len, TextProtocolInfo
 }
 
 bool parseLayer5_7(const uint8_t *buffer, size_t length, size_t *offset, 
-                   Layer4NextProtocol next_proto, layer5_7Data *layer5_7) {
+    Layer4NextProtocol next_proto, layer5_7Data *layer5_7) {
     if (!buffer || !offset || !layer5_7) {
         return false;
     }
